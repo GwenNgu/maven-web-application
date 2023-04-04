@@ -95,13 +95,13 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>Landmark Technologies Releases Nexus Repository</name>
-	      <url>http://3.88.152.247:8081/repository/douala-releases/</url>
+	      <url>http://18.225.36.33:8081/repository/Canon-Realeas/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Landmark Technologies Snapshot Nexus Repository </name>
-	      <url>http://3.88.152.247:8081/repository/douala-snapshots/</url>
+	      <url>http://18.225.36.33:8081/repository/Canon-Snapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
