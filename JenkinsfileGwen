@@ -1,0 +1,24 @@
+node{
+    def mavenHome = tool name: 'maven'
+    stage('1.clone my code'){
+       git credentialsId: 'f1fe8852-0de1-4f43-b630-4a7e7de70199', url: 'https://github.com/GwenNgu/maven-web-application'
+    }
+    stage('2.Maven Build My Code '){
+       sh "${mavenHome}/bin/mvn package"
+    }
+    stage('3.Code Quality Analysis'){
+       sh "${mavenHome}/bin/mvn sonar:sonar"
+    }
+    stage('4.Upload Artifacts In Nexus'){
+       sh "${mavenHome}/bin/mvn deploy"
+    }
+    stage('5.Deploy To Tomcat'){
+        deploy adapters: [tomcat9(credentialsId: '4457f1ad-bc86-4e47-bfd3-3e2e8951835d', path: '', url: 'http://3.128.198.109:8080/')], contextPath: null, war: 'target/*war'
+    }
+    stage('6.Manualapproval'){
+       sh "echo 'ready for review' "
+    timeout(time:5, unit:'HOURS'){
+    input message: 'Application ready for deployment, Please review and approve'
+    }
+    }
+}
